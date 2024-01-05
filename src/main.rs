@@ -107,6 +107,13 @@ fn main() {
     //     .expect("Index entered was not a number");
     // let element = a[index];
     // println!("The value of the element at index {index} is: {element}");
+
+    // FUNCTIONS
+    let some_value= another_function(5, 5);
+    println!("some_value : {some_value}")
 }
 
-
+fn another_function(x: i32, y: i32)-> i32 {
+    println!("val of x & y : {x}, {y}");
+    x + y
+}
