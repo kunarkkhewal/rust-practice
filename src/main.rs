@@ -171,12 +171,57 @@ fn main() {
     //     println!("Element: {element}")
     // }
 
-    for number in (0..10).rev() { // rev() is for reverse
-        println!("Counter: {number}")
-    }
+    // for number in (0..10).rev() { // rev() is for reverse
+    //     println!("Counter: {number}")
+    // }
+
+    // OWNERSHIP
+    // {
+    //     let y: i32;
+    //     {
+    //         let x = 5;
+    //         println!("x = {}", x);
+    //         y = x;
+    //         println!("x = {}", x);
+    //     }
+    //     println!("y = {}", y);
+    // }
+    
+
+
+    // {
+    //     let s2: String;
+    //     {
+    //         let s1 = String::from("hello");
+    //         println!("s1 = {}", s1);
+    //         s2= s1;
+    //         // println!("s1 = {}", s1);
+    //     }
+    
+    //     println!("s2 = {}", s2);
+    // }
+
+    let s = String::from("hello");
+    println!("up {}", s);
+    takes_ownership(s);
+    // println!("dn {}", s);
+
+    let x = 5;
+    println!("up {}", x);
+    makes_copy(x); 
+    println!("dn {}", x);
+    
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
 //     println!("val of x & y : {x}, {y}");
 //     x + y
 // }
+
+fn takes_ownership(some_string: String) { 
+    println!("fn {}", some_string);
+}
+
+fn makes_copy(some_integer: i32) {
+    println!("fn {}", some_integer);
+}
