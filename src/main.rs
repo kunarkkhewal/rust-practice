@@ -109,11 +109,74 @@ fn main() {
     // println!("The value of the element at index {index} is: {element}");
 
     // FUNCTIONS
-    let some_value= another_function(5, 5);
-    println!("some_value : {some_value}")
+    // let some_value= another_function(5, 5);
+    // println!("some_value : {some_value}")
+
+    // CONTROL FLOW
+    // let num = 7;
+    // if num != 7 {
+    //     println!("This is if")
+    // // } else {
+    // //     println!("This is else")
+    // }
+
+    // let cond = false;
+    // let num2 = if cond { 5 } else { 6 };
+    // println!("num2 : {num2}");
+
+    // loop {
+    //     println!("this is loop")
+    // }
+
+    // let mut counter = 0;
+
+    // let result = loop {
+    //     counter += 1;
+    //     if counter == 10 {
+    //         break counter * 2 ;
+    //     }
+    // };
+
+    // println!("result : {result}")
+
+
+    // let mut count = 0;
+
+    // 'counter_loop: loop {
+    //     println!("count => {count}");
+    //     let mut remaining = 10;
+    //     loop {
+    //         println!("remaining => {remaining}");
+    //         if remaining < 9 {
+    //             break;
+    //         }
+    //         if (count > 2) {
+    //             break 'counter_loop; 
+    //         }
+    //         remaining -= 1;
+    //     }
+    //     count += 1;
+    // }
+
+    // let mut counter = 10;
+
+    // while counter >= 0 {
+    //     println!("counter: {counter}");
+    //     counter -= 1;
+    // }
+    // println!("Liftoff!!!")
+
+    // let a = [10, 20, 30, 40];
+    // for element in a {
+    //     println!("Element: {element}")
+    // }
+
+    for number in (0..10).rev() { // rev() is for reverse
+        println!("Counter: {number}")
+    }
 }
 
-fn another_function(x: i32, y: i32)-> i32 {
-    println!("val of x & y : {x}, {y}");
-    x + y
-}
+// fn another_function(x: i32, y: i32)-> i32 {
+//     println!("val of x & y : {x}, {y}");
+//     x + y
+// }
