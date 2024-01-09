@@ -212,16 +212,21 @@ fn main() {
     // println!("dn {}", x);
 
     // REFERENCES
-    let mut s1 = String::from("Hello");
-    let len = calculate_length(&mut s1);
-    println!("s1 : {}, len : {}", s1, len);
+    // let mut s1 = String::from("Hello");
+    // let len = calculate_length(&mut s1);
+    // println!("s1 : {}, len : {}", s1, len);
 
-    let r1 = &mut s1;
-    println!("r1 : {}", r1);
-    let r2 = &mut s1;
-    println!("r2 : {}", r2);
+    // let r1 = &mut s1;
+    // println!("r1 : {}", r1);
+    // let r2 = &mut s1;
+    // println!("r2 : {}", r2);
     
     // println!("r1 : {}, r2 : {}", r1, r2);
+
+    // SLICES
+    let s1 = String::from("HelloWorld");
+    let word = first_word(&s1);
+    println!("word: {}", word)
 
     
 }
@@ -239,7 +244,18 @@ fn main() {
 //     println!("fn {}", some_integer);
 // }
 
-fn calculate_length (s: &mut String) -> usize {
-    s.push_str(" world");
-    s.len()
+// fn calculate_length (s: &mut String) -> usize {
+//     s.push_str(" world");
+//     s.len()
+// }
+
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
