@@ -201,15 +201,28 @@ fn main() {
     //     println!("s2 = {}", s2);
     // }
 
-    let s = String::from("hello");
-    println!("up {}", s);
-    takes_ownership(s);
-    // println!("dn {}", s);
+    // let s = String::from("hello");
+    // println!("up {}", s);
+    // takes_ownership(s);
+    // // println!("dn {}", s);
 
-    let x = 5;
-    println!("up {}", x);
-    makes_copy(x); 
-    println!("dn {}", x);
+    // let x = 5;
+    // println!("up {}", x);
+    // makes_copy(x); 
+    // println!("dn {}", x);
+
+    // REFERENCES
+    let mut s1 = String::from("Hello");
+    let len = calculate_length(&mut s1);
+    println!("s1 : {}, len : {}", s1, len);
+
+    let r1 = &mut s1;
+    println!("r1 : {}", r1);
+    let r2 = &mut s1;
+    println!("r2 : {}", r2);
+    
+    // println!("r1 : {}, r2 : {}", r1, r2);
+
     
 }
 
@@ -218,10 +231,15 @@ fn main() {
 //     x + y
 // }
 
-fn takes_ownership(some_string: String) { 
-    println!("fn {}", some_string);
-}
+// fn takes_ownership(some_string: String) { 
+//     println!("fn {}", some_string);
+// }
 
-fn makes_copy(some_integer: i32) {
-    println!("fn {}", some_integer);
+// fn makes_copy(some_integer: i32) {
+//     println!("fn {}", some_integer);
+// }
+
+fn calculate_length (s: &mut String) -> usize {
+    s.push_str(" world");
+    s.len()
 }
