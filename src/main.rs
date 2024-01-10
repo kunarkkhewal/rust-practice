@@ -335,53 +335,104 @@ fn main() {
     // println!("Rect4 squared : {:?}", Rectangle::square(30));
 
     // ENUM
+    // #[derive(Debug)]
+    // enum IpAddrKind {
+    //     Ipv4(String),
+    //     Ipv6(String)
+    // }
+    // // let four = IpAddrKind::Ipv4;
+    // // let six = IpAddrKind::Ipv6;
+    // // println!("four : {:?}, six: {:?}", four, six)
+
+    // let home = IpAddrKind::Ipv4(String::from("127.0.0.1"));
+    // let loopback = IpAddrKind::Ipv6(String::from("::1"));
+    // println!("Home : {:?}, Loopback : {:?}", home, loopback);
+
+
+    // #[derive(Debug)]
+    // enum IpAddr {
+    //     V4(u8,u8,u8,u8),
+    //     V6(String)
+    // }
+    // let home = IpAddr::V4(127, 0, 0, 1);
+    // let loopback = IpAddr::V6(String::from("::1"));
+    // println!("Home : {:?}, Loopback : {:?}", home, loopback);
+
+    // #[derive(Debug)]
+    // enum Message {
+    //     Quit,
+    //     Move {x: u32, y: u32},
+    //     Write(String),
+    //     ChangeColor(i32, i32, i32)
+    // }
+
+    // impl Message {
+    //     fn call(&self) {
+    //         println!("Self : {:?}", self)
+    //     }
+    // }
+
+    // let m = Message::Write(String::from("Kunark Khewal"));
+    // m.call();
+
+    // let some_number = Some(5);
+    // let some_char = Some('a');
+
+    // let absent_number: Option<i32> = None;
+
+    // println!("some_number : {:?}, some_char: {:?}, absent_number : {:?}", some_number, some_char, absent_number)
+    
+
     #[derive(Debug)]
-    enum IpAddrKind {
-        Ipv4(String),
-        Ipv6(String)
+    enum UsState {
+        Alabama, Alaska, California, Florida
     }
-    // let four = IpAddrKind::Ipv4;
-    // let six = IpAddrKind::Ipv6;
-    // println!("four : {:?}, six: {:?}", four, six)
-
-    let home = IpAddrKind::Ipv4(String::from("127.0.0.1"));
-    let loopback = IpAddrKind::Ipv6(String::from("::1"));
-    println!("Home : {:?}, Loopback : {:?}", home, loopback);
-
-
-    #[derive(Debug)]
-    enum IpAddr {
-        V4(u8,u8,u8,u8),
-        V6(String)
-    }
-    let home = IpAddr::V4(127, 0, 0, 1);
-    let loopback = IpAddr::V6(String::from("::1"));
-    println!("Home : {:?}, Loopback : {:?}", home, loopback);
-
-    #[derive(Debug)]
-    enum Message {
-        Quit,
-        Move {x: u32, y: u32},
-        Write(String),
-        ChangeColor(i32, i32, i32)
+    enum Coin {
+        Penny, 
+        Nickel, 
+        Dime, 
+        Quarter(UsState),
     }
 
-    impl Message {
-        fn call(&self) {
-            println!("Self : {:?}", self)
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => 1,
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::Quarter(state) => {
+                println!("State: {:?}, Quarter", state);
+                25
+            },
         }
     }
 
-    let m = Message::Write(String::from("Kunark Khewal"));
-    m.call();
+    println!("the value of coin is: {}", value_in_cents(Coin::Penny));
+    println!("the value of coin is: {}", value_in_cents(Coin::Quarter(UsState::Florida)));
 
-    let some_number = Some(5);
-    let some_char = Some('a');
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
 
-    let absent_number: Option<i32> = None;
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
 
-    println!("some_number : {:?}, some_char: {:?}, absent_number : {:?}", some_number, some_char, absent_number)
-    
+    println!("five: {:?}", five);
+    println!("Six: {:?}", six);
+    println!("none: {:?}", none);
+
+
+    let dice_roll = 9;
+    match dice_roll {
+        3 => println!("3"),
+        7 => println!("7"),
+        _ => ()
+    }
+
+
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
