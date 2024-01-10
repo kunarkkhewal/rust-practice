@@ -229,62 +229,86 @@ fn main() {
     // println!("word: {}", word)
 
     // STRUCT
-    struct User {
-        active: bool,
-        username: String,
-        email: String,
-        sign_in_count: u64
+    // struct User {
+    //     active: bool,
+    //     username: String,
+    //     email: String,
+    //     sign_in_count: u64
+    // }
+
+    // let user1 = User {
+    //     active: true,
+    //     username: String::from("kunarkkhewal"),
+    //     email: String::from("kunark@email.com"),
+    //     sign_in_count: 1,
+    // };
+
+    // // user1.username = String::from("KK");
+    // println!("username : {}", user1.username);
+
+    // let mut user2 = User {
+    //     active: true,
+    //     username: String::from("kunarkkhewal2"),
+    //     email: String::from("kunark2@email.com"),
+    //     sign_in_count: 2,
+    // };
+
+    // println!("Usernaem2: {}", user2.username);
+    // user2.username = String::from("KK");
+    // println!("Usernaem2: {}", user2.username);
+
+
+    // fn build_user(email: String, username: String) -> User {
+    //     User {
+    //         active: true,
+    //         email,
+    //         username,
+    //         sign_in_count: 3
+    //     }
+    // }
+
+    // let mut user3 = build_user(String::from("email3"), String::from("username3"));
+    // println!("Username3: {}", user3.username);
+    // user3.username = String::from("user3");
+    // println!("Username3: {}", user3.username);
+
+    // let user4 = User {
+    //     email: String::from("email4"),
+    //     ..user1
+    // };
+    // println!("user4 email: {}", user4.email);
+    // println!("user4 username: {}", user4.username);
+    // println!("user4 active: {}", user4.active);
+
+
+    // println!("user1 email: {}", user1.email);
+    // // println!("user1 username: {}", user1.username);
+    // println!("user1 active: {}", user1.active);
+
+    // STRUCT EXAMPLE
+
+    // let width1 = 30;
+    // let height1 = 50;
+    // let rect1 = (30, 50);
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32
     }
 
-    let user1 = User {
-        active: true,
-        username: String::from("kunarkkhewal"),
-        email: String::from("kunark@email.com"),
-        sign_in_count: 1,
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale),
+        height: 50,
     };
 
-    // user1.username = String::from("KK");
-    println!("username : {}", user1.username);
+    let rect2 = dbg!(rect1);
 
-    let mut user2 = User {
-        active: true,
-        username: String::from("kunarkkhewal2"),
-        email: String::from("kunark2@email.com"),
-        sign_in_count: 2,
-    };
-
-    println!("Usernaem2: {}", user2.username);
-    user2.username = String::from("KK");
-    println!("Usernaem2: {}", user2.username);
-
-
-    fn build_user(email: String, username: String) -> User {
-        User {
-            active: true,
-            email,
-            username,
-            sign_in_count: 3
-        }
-    }
-
-    let mut user3 = build_user(String::from("email3"), String::from("username3"));
-    println!("Username3: {}", user3.username);
-    user3.username = String::from("user3");
-    println!("Username3: {}", user3.username);
-
-    let user4 = User {
-        email: String::from("email4"),
-        ..user1
-    };
-    println!("user4 email: {}", user4.email);
-    println!("user4 username: {}", user4.username);
-    println!("user4 active: {}", user4.active);
-
-
-    println!("user1 email: {}", user1.email);
-    // println!("user1 username: {}", user1.username);
-    println!("user1 active: {}", user1.active);
+    println!("Area of Rectangle is {:#?} sqpxl", rect2);
     
+    fn area(rectangle :&Rectangle) -> u32 {
+        rectangle.width * rectangle.height
+    }
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
