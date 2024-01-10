@@ -224,10 +224,66 @@ fn main() {
     // println!("r1 : {}, r2 : {}", r1, r2);
 
     // SLICES
-    let s1 = String::from("HelloWorld");
-    let word = first_word(&s1);
-    println!("word: {}", word)
+    // let s1 = String::from("HelloWorld");
+    // let word = first_word(&s1);
+    // println!("word: {}", word)
 
+    // STRUCT
+    struct User {
+        active: bool,
+        username: String,
+        email: String,
+        sign_in_count: u64
+    }
+
+    let user1 = User {
+        active: true,
+        username: String::from("kunarkkhewal"),
+        email: String::from("kunark@email.com"),
+        sign_in_count: 1,
+    };
+
+    // user1.username = String::from("KK");
+    println!("username : {}", user1.username);
+
+    let mut user2 = User {
+        active: true,
+        username: String::from("kunarkkhewal2"),
+        email: String::from("kunark2@email.com"),
+        sign_in_count: 2,
+    };
+
+    println!("Usernaem2: {}", user2.username);
+    user2.username = String::from("KK");
+    println!("Usernaem2: {}", user2.username);
+
+
+    fn build_user(email: String, username: String) -> User {
+        User {
+            active: true,
+            email,
+            username,
+            sign_in_count: 3
+        }
+    }
+
+    let mut user3 = build_user(String::from("email3"), String::from("username3"));
+    println!("Username3: {}", user3.username);
+    user3.username = String::from("user3");
+    println!("Username3: {}", user3.username);
+
+    let user4 = User {
+        email: String::from("email4"),
+        ..user1
+    };
+    println!("user4 email: {}", user4.email);
+    println!("user4 username: {}", user4.username);
+    println!("user4 active: {}", user4.active);
+
+
+    println!("user1 email: {}", user1.email);
+    // println!("user1 username: {}", user1.username);
+    println!("user1 active: {}", user1.active);
     
 }
 
@@ -249,13 +305,14 @@ fn main() {
 //     s.len()
 // }
 
-fn first_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
+// fn first_word(s: &String) -> &str {
+//     let bytes = s.as_bytes();
+//     for (i, &item) in bytes.iter().enumerate() {
+//         if item == b' ' {
+//             return &s[0..i];
+//         }
+//     }
 
-    &s[..]
-}
+//     &s[..]
+// }
+
