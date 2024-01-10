@@ -296,19 +296,45 @@ fn main() {
         height: u32
     }
 
-    let scale = 2;
+    impl Rectangle {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+
+        fn can_hold(&self, rectangle: &Rectangle) -> bool {
+            self.width > rectangle.width && self.height > rectangle.height
+        }
+
+        fn square(size: u32) -> Self {
+            Self {
+                width: size,
+                height: size,
+            }
+        }
+    }
+
+    // let scale = 2;
     let rect1 = Rectangle {
-        width: dbg!(30 * scale),
+        width: 30,
         height: 50,
     };
+    let rect2 = Rectangle {
+        width: 15,
+        height: 25,
+    };
+    let rect3 = Rectangle {
+        width: 45,
+        height: 75,
+    };
 
-    let rect2 = dbg!(rect1);
+    // let rect2 = dbg!(rect1);
 
-    println!("Area of Rectangle is {:#?} sqpxl", rect2);
+    println!("Can Rect1 hold Rect2 : {}", rect1.can_hold(&rect2));
+    println!("Can Rect1 hold Rect3 : {}", rect1.can_hold(&rect3));
     
-    fn area(rectangle :&Rectangle) -> u32 {
-        rectangle.width * rectangle.height
-    }
+    println!("Rect4 squared : {:?}", Rectangle::square(30));
+
+    
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
