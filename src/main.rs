@@ -290,50 +290,97 @@ fn main() {
     // let width1 = 30;
     // let height1 = 50;
     // let rect1 = (30, 50);
-    #[derive(Debug)]
-    struct Rectangle {
-        width: u32,
-        height: u32
-    }
+    // #[derive(Debug)]
+    // struct Rectangle {
+    //     width: u32,
+    //     height: u32
+    // }
 
-    impl Rectangle {
-        fn area(&self) -> u32 {
-            self.width * self.height
-        }
+    // impl Rectangle {
+    //     fn area(&self) -> u32 {
+    //         self.width * self.height
+    //     }
 
-        fn can_hold(&self, rectangle: &Rectangle) -> bool {
-            self.width > rectangle.width && self.height > rectangle.height
-        }
+    //     fn can_hold(&self, rectangle: &Rectangle) -> bool {
+    //         self.width > rectangle.width && self.height > rectangle.height
+    //     }
 
-        fn square(size: u32) -> Self {
-            Self {
-                width: size,
-                height: size,
-            }
-        }
-    }
+    //     fn square(size: u32) -> Self {
+    //         Self {
+    //             width: size,
+    //             height: size,
+    //         }
+    //     }
+    // }
 
-    // let scale = 2;
-    let rect1 = Rectangle {
-        width: 30,
-        height: 50,
-    };
-    let rect2 = Rectangle {
-        width: 15,
-        height: 25,
-    };
-    let rect3 = Rectangle {
-        width: 45,
-        height: 75,
-    };
+    // // let scale = 2;
+    // let rect1 = Rectangle {
+    //     width: 30,
+    //     height: 50,
+    // };
+    // let rect2 = Rectangle {
+    //     width: 15,
+    //     height: 25,
+    // };
+    // let rect3 = Rectangle {
+    //     width: 45,
+    //     height: 75,
+    // };
 
-    // let rect2 = dbg!(rect1);
+    // // let rect2 = dbg!(rect1);
 
-    println!("Can Rect1 hold Rect2 : {}", rect1.can_hold(&rect2));
-    println!("Can Rect1 hold Rect3 : {}", rect1.can_hold(&rect3));
+    // println!("Can Rect1 hold Rect2 : {}", rect1.can_hold(&rect2));
+    // println!("Can Rect1 hold Rect3 : {}", rect1.can_hold(&rect3));
     
-    println!("Rect4 squared : {:?}", Rectangle::square(30));
+    // println!("Rect4 squared : {:?}", Rectangle::square(30));
 
+    // ENUM
+    #[derive(Debug)]
+    enum IpAddrKind {
+        Ipv4(String),
+        Ipv6(String)
+    }
+    // let four = IpAddrKind::Ipv4;
+    // let six = IpAddrKind::Ipv6;
+    // println!("four : {:?}, six: {:?}", four, six)
+
+    let home = IpAddrKind::Ipv4(String::from("127.0.0.1"));
+    let loopback = IpAddrKind::Ipv6(String::from("::1"));
+    println!("Home : {:?}, Loopback : {:?}", home, loopback);
+
+
+    #[derive(Debug)]
+    enum IpAddr {
+        V4(u8,u8,u8,u8),
+        V6(String)
+    }
+    let home = IpAddr::V4(127, 0, 0, 1);
+    let loopback = IpAddr::V6(String::from("::1"));
+    println!("Home : {:?}, Loopback : {:?}", home, loopback);
+
+    #[derive(Debug)]
+    enum Message {
+        Quit,
+        Move {x: u32, y: u32},
+        Write(String),
+        ChangeColor(i32, i32, i32)
+    }
+
+    impl Message {
+        fn call(&self) {
+            println!("Self : {:?}", self)
+        }
+    }
+
+    let m = Message::Write(String::from("Kunark Khewal"));
+    m.call();
+
+    let some_number = Some(5);
+    let some_char = Some('a');
+
+    let absent_number: Option<i32> = None;
+
+    println!("some_number : {:?}, some_char: {:?}, absent_number : {:?}", some_number, some_char, absent_number)
     
 }
 
