@@ -2,6 +2,8 @@
 // use std::io; //::{BufWriter, stdout};
 // use std::fmt::Display;
 
+use std::ops::Index;
+
 use crate::garden::vegetables::Beans;
 
 pub mod garden;
@@ -443,8 +445,54 @@ fn main() {
 
     // MODULES
     
-    let plant = Beans {};
-    println!("Im growing : {:?}", plant)
+    // let plant = Beans {};
+    // println!("Im growing : {:?}", plant)
+
+
+    // COLLECTIONS
+
+    // VECTOR
+    let mut v: Vec<i32> = Vec::new();
+    // let v = vec![1,2,3];
+
+    v.push(1);
+    v.push(2);
+    v.push(3);
+    v.push(4);
+    // v.push('a');
+
+    let third: &i32 = &v[2];
+    println!("third : {third}");
+
+    let first: Option<&i32> = v.get(5);
+    match first {
+        Some(val) => println!("first : {val}"),
+        None => ()
+    }
+    println!("first : {:?}", first);
+
+    for i in &mut v {
+        *i += 50;
+        println!("i : {i}");
+        // v.push(6)
+    }
+
+    #[derive(Debug)]
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec!(
+        SpreadsheetCell::Int(1),
+        SpreadsheetCell::Float(6.36),
+        SpreadsheetCell::Text(String::from("Value"))
+    );
+
+    for i in &row {
+        println!("Row : {:?}", i)
+    }
 
 
 }
