@@ -6,6 +6,8 @@ use std::ops::Index;
 
 use crate::garden::vegetables::Beans;
 
+use std::collections::HashMap;
+
 pub mod garden;
 
 fn main() {
@@ -496,51 +498,87 @@ fn main() {
 
 
     // STRING
-    let mut s = String::new();
-    println!("s: {s}");
+    // let mut s = String::new();
+    // println!("s: {s}");
 
-    let data = "initial_comment";
-    let mut s = data.to_string();
-    println!("s: {s}");
+    // let data = "initial_comment";
+    // let mut s = data.to_string();
+    // println!("s: {s}");
 
 
-    s.push_str(" string");
-    s.push('a');
-    println!("s: {s}");
+    // s.push_str(" string");
+    // s.push('a');
+    // println!("s: {s}");
 
-    let s1 = String::from("Hello ");
-    let s2 = String::from("World");
-    let s3: String = s1 + &s2;
+    // let s1 = String::from("Hello ");
+    // let s2 = String::from("World");
+    // let s3: String = s1 + &s2;
+    // // println!("s1 : {s1}");
+    // // println!("s2 : {s2}");
+    // // println!("s3 : {s3}");
+
+    // let s1 = String::from("tic");
+    // let s2 = String::from("tac");
+    // let s3 = String::from("toe");
+    // let s = s1 + &s2 + &s3;
+    // // println!("s1 : {s1}");
+    // println!("s2 : {s2}");
+    // println!("s3 : {s3}");
+
+    // let s1 = String::from("tic");
+    // let s2 = String::from("tac");
+    // let s3 = String::from("toe");
+
+    // let s = format!("{s1}-{s2}-{s3}");
     // println!("s1 : {s1}");
     // println!("s2 : {s2}");
     // println!("s3 : {s3}");
 
-    let s1 = String::from("tic");
-    let s2 = String::from("tac");
-    let s3 = String::from("toe");
-    let s = s1 + &s2 + &s3;
-    // println!("s1 : {s1}");
-    println!("s2 : {s2}");
-    println!("s3 : {s3}");
 
-    let s1 = String::from("tic");
-    let s2 = String::from("tac");
-    let s3 = String::from("toe");
+    // for c in "Зд".chars() {
+    //     println!("{c}");
+    // }
 
-    let s = format!("{s1}-{s2}-{s3}");
-    println!("s1 : {s1}");
-    println!("s2 : {s2}");
-    println!("s3 : {s3}");
+    // for c in "Зд".bytes() {
+    //     println!("{c}");
+    // }
 
+    // HASHMAPS
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
 
-    for c in "Зд".chars() {
-        println!("{c}");
-    }
+    let team_name = String::from("Blue");
+    let score = scores.get(&team_name).copied().unwrap_or(0);
+    println!("score : {:?}", score);
 
-    for c in "Зд".bytes() {
-        println!("{c}");
+    for (key, value) in scores {
+        println!("Key: {key}, Value: {value}")
     }
     
+
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 20);
+    scores.entry(String::from("Blue")).or_insert(50);
+    scores.entry(String::from("Yellow")).or_insert(50);
+
+    println!("Scores: {:?}", scores);
+
+
+    let text = String::from("Hello World wonderful World !!!");
+    let mut map = HashMap::new();
+    for word in text.split(' ') {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+    println!("map: {:?}", map);
+
+    let mut s = "Hello World";
+    s = "Kunark Khewal";
+    // s.push_str(" World");
+    println!("s: {s}");
+
+
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
