@@ -452,49 +452,95 @@ fn main() {
     // COLLECTIONS
 
     // VECTOR
-    let mut v: Vec<i32> = Vec::new();
-    // let v = vec![1,2,3];
+    // let mut v: Vec<i32> = Vec::new();
+    // // let v = vec![1,2,3];
 
-    v.push(1);
-    v.push(2);
-    v.push(3);
-    v.push(4);
-    // v.push('a');
+    // v.push(1);
+    // v.push(2);
+    // v.push(3);
+    // v.push(4);
+    // // v.push('a');
 
-    let third: &i32 = &v[2];
-    println!("third : {third}");
+    // let third: &i32 = &v[2];
+    // println!("third : {third}");
 
-    let first: Option<&i32> = v.get(5);
-    match first {
-        Some(val) => println!("first : {val}"),
-        None => ()
+    // let first: Option<&i32> = v.get(5);
+    // match first {
+    //     Some(val) => println!("first : {val}"),
+    //     None => ()
+    // }
+    // println!("first : {:?}", first);
+
+    // for i in &mut v {
+    //     *i += 50;
+    //     println!("i : {i}");
+    //     // v.push(6)
+    // }
+
+    // #[derive(Debug)]
+    // enum SpreadsheetCell {
+    //     Int(i32),
+    //     Float(f64),
+    //     Text(String),
+    // }
+
+    // let row = vec!(
+    //     SpreadsheetCell::Int(1),
+    //     SpreadsheetCell::Float(6.36),
+    //     SpreadsheetCell::Text(String::from("Value"))
+    // );
+
+    // for i in &row {
+    //     println!("Row : {:?}", i)
+    // }
+
+
+    // STRING
+    let mut s = String::new();
+    println!("s: {s}");
+
+    let data = "initial_comment";
+    let mut s = data.to_string();
+    println!("s: {s}");
+
+
+    s.push_str(" string");
+    s.push('a');
+    println!("s: {s}");
+
+    let s1 = String::from("Hello ");
+    let s2 = String::from("World");
+    let s3: String = s1 + &s2;
+    // println!("s1 : {s1}");
+    // println!("s2 : {s2}");
+    // println!("s3 : {s3}");
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+    let s = s1 + &s2 + &s3;
+    // println!("s1 : {s1}");
+    println!("s2 : {s2}");
+    println!("s3 : {s3}");
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = format!("{s1}-{s2}-{s3}");
+    println!("s1 : {s1}");
+    println!("s2 : {s2}");
+    println!("s3 : {s3}");
+
+
+    for c in "Зд".chars() {
+        println!("{c}");
     }
-    println!("first : {:?}", first);
 
-    for i in &mut v {
-        *i += 50;
-        println!("i : {i}");
-        // v.push(6)
+    for c in "Зд".bytes() {
+        println!("{c}");
     }
-
-    #[derive(Debug)]
-    enum SpreadsheetCell {
-        Int(i32),
-        Float(f64),
-        Text(String),
-    }
-
-    let row = vec!(
-        SpreadsheetCell::Int(1),
-        SpreadsheetCell::Float(6.36),
-        SpreadsheetCell::Text(String::from("Value"))
-    );
-
-    for i in &row {
-        println!("Row : {:?}", i)
-    }
-
-
+    
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
