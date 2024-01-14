@@ -2,12 +2,15 @@
 // use std::io; //::{BufWriter, stdout};
 // use std::fmt::Display;
 
+use std::io::ErrorKind;
 use std::ops::Index;
 
 use crate::garden::vegetables::Beans;
 
 use std::collections::HashMap;
 
+use std::fs::File;
+use std::io::{self, Read};
 pub mod garden;
 
 fn main() {
@@ -544,41 +547,95 @@ fn main() {
     // }
 
     // HASHMAPS
-    let mut scores = HashMap::new();
-    scores.insert(String::from("Blue"), 10);
-    scores.insert(String::from("Yellow"), 50);
+    // let mut scores = HashMap::new();
+    // scores.insert(String::from("Blue"), 10);
+    // scores.insert(String::from("Yellow"), 50);
 
-    let team_name = String::from("Blue");
-    let score = scores.get(&team_name).copied().unwrap_or(0);
-    println!("score : {:?}", score);
+    // let team_name = String::from("Blue");
+    // let score = scores.get(&team_name).copied().unwrap_or(0);
+    // println!("score : {:?}", score);
 
-    for (key, value) in scores {
-        println!("Key: {key}, Value: {value}")
-    }
+    // for (key, value) in scores {
+    //     println!("Key: {key}, Value: {value}")
+    // }
     
 
-    let mut scores = HashMap::new();
-    scores.insert(String::from("Blue"), 20);
-    scores.entry(String::from("Blue")).or_insert(50);
-    scores.entry(String::from("Yellow")).or_insert(50);
+    // let mut scores = HashMap::new();
+    // scores.insert(String::from("Blue"), 20);
+    // scores.entry(String::from("Blue")).or_insert(50);
+    // scores.entry(String::from("Yellow")).or_insert(50);
 
-    println!("Scores: {:?}", scores);
+    // println!("Scores: {:?}", scores);
 
 
-    let text = String::from("Hello World wonderful World !!!");
-    let mut map = HashMap::new();
-    for word in text.split(' ') {
-        let count = map.entry(word).or_insert(0);
-        *count += 1;
+    // let text = String::from("Hello World wonderful World !!!");
+    // let mut map = HashMap::new();
+    // for word in text.split(' ') {
+    //     let count = map.entry(word).or_insert(0);
+    //     *count += 1;
+    // }
+    // println!("map: {:?}", map);
+
+    // let mut s = "Hello World";
+    // s = "Kunark Khewal";
+    // // s.push_str(" World");
+    // println!("s: {s}");
+
+
+    // ERROR HANDLING
+
+    // panic!("TEST ERROR!!!")
+
+    // let v = vec![1,2,3];
+    // v[99];
+
+    let greeting_file_result = File::open("Hello.txt")
+        .expect("Hello.txt not found");
+
+    // let greeting_file = match greeting_file_result {
+    //     Ok(file) => file,
+    //     Err(error) => match error.kind() {
+    //         ErrorKind::NotFound => match File::create("hello.txt") {
+    //             Ok(fc) => fc,
+    //             Err(e) => panic!("Problem creating file: {:?}", e),
+    //         }
+    //         other => panic!("Problem in file opening: {:?}", other)
+    //     } 
+    // };
+
+    read_username_from_file_updated();
+
+
+    // println!("greeting_file : {:?}", greeting_file)
+}
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let username_file_result = File::open("hello.txt");
+    let mut username_file = match username_file_result {
+        Ok(file) => file,
+        Err(error) => return Err(error),
+    };
+    let mut username = String::new();
+    match username_file.read_to_string(&mut username) {
+        Ok(_) => Ok(username),
+        Err(err) => Err(err),
     }
-    println!("map: {:?}", map);
+}
 
-    let mut s = "Hello World";
-    s = "Kunark Khewal";
-    // s.push_str(" World");
-    println!("s: {s}");
+fn read_username_from_file_updated() -> Result<String, io::Error> {
+    // let mut username_file = File::open("hello.txt")?;
+    // let mut username = String::new();
+    // username_file.read_to_string(&mut username)?;
+    // Ok(username)
 
+    // much shorter syntax
+    // let mut username = String::new();
+    // File::open("hello.txt")?.read_to_string(&mut username)?;
+    // Ok(username)
 
+    // much shorter
+    use std::fs;
+    fs::read_to_string("hello.txt")
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
