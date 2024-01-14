@@ -589,8 +589,8 @@ fn main() {
     // let v = vec![1,2,3];
     // v[99];
 
-    let greeting_file_result = File::open("Hello.txt")
-        .expect("Hello.txt not found");
+    // let greeting_file_result = File::open("Hello.txt")
+    //     .expect("Hello.txt not found");
 
     // let greeting_file = match greeting_file_result {
     //     Ok(file) => file,
@@ -603,7 +603,10 @@ fn main() {
     //     } 
     // };
 
-    read_username_from_file_updated();
+    match read_username_from_file_updated() {
+        Ok(_) => "OK",
+        Err(_) => "Error"
+    };
 
 
     // println!("greeting_file : {:?}", greeting_file)
@@ -629,13 +632,13 @@ fn read_username_from_file_updated() -> Result<String, io::Error> {
     // Ok(username)
 
     // much shorter syntax
-    // let mut username = String::new();
-    // File::open("hello.txt")?.read_to_string(&mut username)?;
-    // Ok(username)
+    let mut username = String::new();
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+    Ok(username)
 
     // much shorter
-    use std::fs;
-    fs::read_to_string("hello.txt")
+    // use std::fs;
+    // fs::read_to_string("hello.txt")
 }
 
 // fn another_function(x: i32, y: i32)-> i32 {
