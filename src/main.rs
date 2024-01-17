@@ -2,6 +2,7 @@
 // use std::io; //::{BufWriter, stdout};
 // use std::fmt::Display;
 
+use core::num;
 use std::io::ErrorKind;
 use std::ops::Index;
 
@@ -603,43 +604,88 @@ fn main() {
     //     } 
     // };
 
-    match read_username_from_file_updated() {
-        Ok(_) => "OK",
-        Err(_) => "Error"
-    };
+    // match read_username_from_file_updated() {
+    //     Ok(_) => "OK",
+    //     Err(_) => "Error"
+    // };
 
+    // GENERICS
+
+    // let number_list = vec![34,35,36,37,38];
+    // let mut largest = &number_list[0];
+    // for number in &number_list {
+    //     if number > largest {
+    //         largest = number;
+    //     }
+    // }
+    // println!("Largest : {largest}")
+
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
+
+    let char_list = vec!['a', 'c', 'z', 'w'];
+
+    let result = largest(&char_list);
+    println!("The largest char is {}", result);
+
+    #[derive(Debug)]
+    struct Point<T, X> {
+        x: T,
+        y: X,
+    }
+
+    impl<T, U> Point<T, U>  {
+        fn xcoord(&self) -> &T {
+            &self.x
+        }
+    }
+    
+    let coord = Point {x: 1, y: 2.3};
+    println!("Coord : {:?}", coord.xcoord())
 
     // println!("greeting_file : {:?}", greeting_file)
 }
 
-fn read_username_from_file() -> Result<String, io::Error> {
-    let username_file_result = File::open("hello.txt");
-    let mut username_file = match username_file_result {
-        Ok(file) => file,
-        Err(error) => return Err(error),
-    };
-    let mut username = String::new();
-    match username_file.read_to_string(&mut username) {
-        Ok(_) => Ok(username),
-        Err(err) => Err(err),
+fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
+    let mut largest = &list[0];
+    for number in list {
+        if number > largest {
+            largest = number;
+        }
     }
+    largest
 }
 
-fn read_username_from_file_updated() -> Result<String, io::Error> {
-    // let mut username_file = File::open("hello.txt")?;
-    // let mut username = String::new();
-    // username_file.read_to_string(&mut username)?;
-    // Ok(username)
+// fn read_username_from_file() -> Result<String, io::Error> {
+//     let username_file_result = File::open("hello.txt");
+//     let mut username_file = match username_file_result {
+//         Ok(file) => file,
+//         Err(error) => return Err(error),
+//     };
+//     let mut username = String::new();
+//     match username_file.read_to_string(&mut username) {
+//         Ok(_) => Ok(username),
+//         Err(err) => Err(err),
+//     }
+// }
 
-    // much shorter syntax
-    let mut username = String::new();
-    File::open("hello.txt")?.read_to_string(&mut username)?;
-    Ok(username)
+// fn read_username_from_file_updated() -> Result<String, io::Error> {
+//     // let mut username_file = File::open("hello.txt")?;
+//     // let mut username = String::new();
+//     // username_file.read_to_string(&mut username)?;
+//     // Ok(username)
 
-    // much shorter
-    // use std::fs;
-    // fs::read_to_string("hello.txt")
-}
+//     // much shorter syntax
+//     let mut username = String::new();
+//     File::open("hello.txt")?.read_to_string(&mut username)?;
+//     Ok(username)
+
+//     // much shorter
+//     // use std::fs;
+//     // fs::read_to_string("hello.txt")
+// }
 
 // fn another_function(x: i32, y: i32)-> i32 {
 //     println!("val of x & y : {x}, {y}");
