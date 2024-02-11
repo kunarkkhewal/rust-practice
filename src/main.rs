@@ -620,43 +620,96 @@ fn main() {
     // }
     // println!("Largest : {largest}")
 
-    let number_list = vec![34, 50, 25, 100, 65];
+    // let number_list = vec![34, 50, 25, 100, 65];
 
-    let result = largest(&number_list);
-    println!("The largest number is {}", result);
+    // let result = largest(&number_list);
+    // println!("The largest number is {}", result);
 
-    let char_list = vec!['a', 'c', 'z', 'w'];
+    // let char_list = vec!['a', 'c', 'z', 'w'];
 
-    let result = largest(&char_list);
-    println!("The largest char is {}", result);
+    // let result = largest(&char_list);
+    // println!("The largest char is {}", result);
 
-    #[derive(Debug)]
-    struct Point<T, X> {
-        x: T,
-        y: X,
-    }
+    // #[derive(Debug)]
+    // struct Point<T, X> {
+    //     x: T,
+    //     y: X,
+    // }
 
-    impl<T, U> Point<T, U>  {
-        fn xcoord(&self) -> &T {
-            &self.x
-        }
-    }
+    // impl<T, U> Point<T, U>  {
+    //     fn xcoord(&self) -> &T {
+    //         &self.x
+    //     }
+    // }
     
-    let coord = Point {x: 1, y: 2.3};
-    println!("Coord : {:?}", coord.xcoord())
+    // let coord = Point {x: 1, y: 2.3};
+    // println!("Coord : {:?}", coord.xcoord())
 
     // println!("greeting_file : {:?}", greeting_file)
+
+
+    // FUNCTIONAL PROGRAMMING
+    let store = Inventory {
+        shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue],
+    };
+
+    let user_pref1 = Some(ShirtColor::Red);
+    let giveaway1 = store.giveaway(user_pref1);
+    println!(
+        "The user with preference {:?} gets {:?}",
+        user_pref1, giveaway1
+    );
+
+    let user_pref2 = None;
+    let giveaway2 = store.giveaway(user_pref2);
+    println!(
+        "The user with preference {:?} gets {:?}",
+        user_pref2, giveaway2
+    );
 }
 
-fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
-    let mut largest = &list[0];
-    for number in list {
-        if number > largest {
-            largest = number;
+#[derive(Debug, PartialEq, Copy, Clone)]
+enum ShirtColor {
+    Red,
+    Blue,
+}
+
+struct Inventory {
+    shirts: Vec<ShirtColor>,
+}
+
+impl Inventory {
+    fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
+        user_preference.unwrap_or_else(|| self.most_stocked())
+    }
+
+    fn most_stocked(&self) -> ShirtColor {
+        let mut num_red = 0;
+        let mut num_blue = 0;
+
+        for color in &self.shirts {
+            match color {
+                ShirtColor::Red => num_red += 1,
+                ShirtColor::Blue => num_blue += 1,
+            }
+        }
+        if num_red > num_blue {
+            ShirtColor::Red
+        } else {
+            ShirtColor::Blue
         }
     }
-    largest
 }
+
+// fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
+//     let mut largest = &list[0];
+//     for number in list {
+//         if number > largest {
+//             largest = number;
+//         }
+//     }
+//     largest
+// }
 
 // fn read_username_from_file() -> Result<String, io::Error> {
 //     let username_file_result = File::open("hello.txt");
